@@ -1,8 +1,10 @@
 import axios from "axios";
 import { getToken } from "../helpers/auth";
 
+const URL = process.env.BASEURL || "http://localhost:3001";
+
 const api = axios.create({
-  baseURL: process.env.BASEURL || "http://localhost:3001"
+  baseURL: URL
 });
 
 api.interceptors.request.use(
