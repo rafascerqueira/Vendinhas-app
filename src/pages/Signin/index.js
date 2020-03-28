@@ -29,7 +29,6 @@ const Signin = props => {
     try {
       setError("");
       const req = await api.post("/signin", { email, password });
-      console.log(req);
       localStorage.setItem("__client", req.data.name);
       localStorage.setItem("__token", req.data.token);
       props.history.push("/main");
@@ -38,13 +37,17 @@ const Signin = props => {
     }
   }
 
+  function signup() {
+    return props.history.push("/signup");
+  }
+
   return (
     <>
       <form onSubmit={login}>
         <div className="columns is-centered login-form">
-          <div className="column is-3">
-            <h1 className="title is-2">Vendinhas</h1>
-
+          <div className="column is-3 is-three-quarters-mobile">
+            <h1 className="title is-2 title-centered">Vendinhas</h1>
+            <hr />
             {error && (
               <div className="notification is-danger">
                 <button
@@ -95,7 +98,11 @@ const Signin = props => {
                 </button>
               </div>
               <div className="control">
-                <button className="button is-info" type="button">
+                <button
+                  className="button is-info"
+                  type="button"
+                  onClick={signup}
+                >
                   Cadastre-se
                 </button>
               </div>
