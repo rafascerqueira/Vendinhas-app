@@ -8,6 +8,7 @@ import {
   faSignInAlt
 } from "@fortawesome/free-solid-svg-icons";
 
+import Logo from "../../img/vendinhas.png";
 import "./style.css";
 
 const Signin = props => {
@@ -46,7 +47,7 @@ const Signin = props => {
       <form onSubmit={login}>
         <div className="columns is-centered login-form">
           <div className="column is-3 is-three-quarters-mobile">
-            <h1 className="title is-2 title-centered">Vendinhas</h1>
+            <img src={Logo} alt="Vendinhas logo" />
             <hr />
             {error && (
               <div className="notification is-danger">

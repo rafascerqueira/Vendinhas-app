@@ -10,8 +10,8 @@ export default () => (
     <Switch>
       <Route exact path="/" component={Signin} />
       <Route path="/signup" component={Signup} />
-      <Route path="/main" render={Main} />
-      <Route path="/sale" render={Sale} />
+      <Route path="/main" component={Main} />
+      <Route path="/sale" component={Sale} />
       <Redirect from="*" to="/" />
     </Switch>
   </BrowserRouter>
