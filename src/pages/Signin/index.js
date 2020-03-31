@@ -15,6 +15,7 @@ const Signin = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function login(event) {
     event.preventDefault();
@@ -29,11 +30,13 @@ const Signin = props => {
 
     try {
       setError("");
+      setLoading(true);
       const req = await api.post("/signin", { email, password });
       localStorage.setItem("__client", req.data.name);
       localStorage.setItem("__token", req.data.token);
       props.history.push("/main");
     } catch (e) {
+      setLoading(false);
       return setError("Usuário não encontrado!");
     }
   }
@@ -108,6 +111,9 @@ const Signin = props => {
                 </button>
               </div>
             </div>
+            {loading && (
+              <progress class="progress is-small is-dark" max="100"></progress>
+            )}
           </div>
         </div>
       </form>
