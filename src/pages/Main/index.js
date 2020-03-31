@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../img/vendinhas.png";
+import Logo from "../../img/Vendinhas-logo.png";
 
 import "./style.css";
 
@@ -19,7 +19,7 @@ const Main = () => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item" href="http://localhost:3000">
-            <img src={Logo} width="112" height="28" />
+            <img src={Logo} width="100" />
           </a>
 
           <a
