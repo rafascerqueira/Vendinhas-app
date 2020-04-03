@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../img/Vendinhas-logo.png";
+import Logo from "../../img/Vendinhas.png";
 
 import "./style.css";
 
@@ -18,8 +18,8 @@ const Main = () => {
     <>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="http://localhost:3000">
-            <img src={Logo} width="100" />
+          <a className="navbar-item" href="/main">
+            <img src={Logo} alt="Logo Vendinhas" />
           </a>
 
           <a
@@ -41,19 +41,19 @@ const Main = () => {
           className={`navbar-menu ${isActive ? "is-active" : ""}`}
         >
           <div className="navbar-start">
-            <a className="navbar-item">Home</a>
+            <a className="navbar-item">Pedidos</a>
 
-            <a className="navbar-item">Documentation</a>
+            <a className="navbar-item">Estoque</a>
 
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">More</a>
+              <a className="navbar-link">Venda</a>
 
               <div className="navbar-dropdown">
-                <a className="navbar-item">About</a>
-                <a className="navbar-item">Jobs</a>
-                <a className="navbar-item">Contact</a>
+                <a className="navbar-item">Novo Venda</a>
+                <a className="navbar-item">Alterar</a>
+                <a className="navbar-item">Exclusão</a>
                 <hr className="navbar-divider" />
-                <a className="navbar-item">Report an issue</a>
+                <a className="navbar-item">Total p/ período</a>
               </div>
             </div>
           </div>
@@ -62,7 +62,9 @@ const Main = () => {
             <div className="navbar-item">
               <div className="buttons">
                 <a className="button is-primary">
-                  <strong>Sign up</strong>
+                  <strong>
+                    {localStorage.getItem("__client") || "Visitante"}
+                  </strong>
                 </a>
                 <a className="button is-light">Log in</a>
               </div>

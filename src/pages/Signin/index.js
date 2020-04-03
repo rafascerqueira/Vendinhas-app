@@ -8,7 +8,7 @@ import {
   faSignInAlt
 } from "@fortawesome/free-solid-svg-icons";
 
-import Logo from "../../img/Vendinhas-logo.png";
+import Logo from "../../img/Vendinhas.png";
 import "./style.css";
 
 const Signin = props => {
