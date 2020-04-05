@@ -4,8 +4,11 @@ import Logo from "../../img/Vendinhas.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
+import "./style.css";
+
 const Header = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   function logout() {
     localStorage.removeItem("__client");
@@ -47,45 +50,37 @@ const Header = () => {
             <Link className="navbar-item" to="#">
               Estoque
             </Link>
-
-            <div className="navbar-item has-dropdown is-hoverable">
-              <Link className="navbar-link" to="#">
-                Venda
-              </Link>
-
-              <div className="navbar-dropdown">
-                <Link className="navbar-item" to="#">
-                  Novo Venda
-                </Link>
-                <Link className="navbar-item" to="#">
-                  Alterar
-                </Link>
-                <Link className="navbar-item" to="#">
-                  Exclusão
-                </Link>
-                <hr className="navbar-divider" />
-                <Link className="navbar-item" to="#">
-                  Total p/ período
-                </Link>
-              </div>
-            </div>
           </div>
 
           <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="button is-primary">
-                  <span className="icon">
-                    <FontAwesomeIcon icon={faUserCircle} />
-                  </span>
-                  <strong>
-                    {localStorage.getItem("__client") || "Visitante"}
-                  </strong>
-                </a>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <Link to="/" className="button is-danger" onClick={logout}>
-                  Sair
+            <div
+              className={`navbar-item has-dropdown ${
+                isClicked ? "is-active" : ""
+              } `}
+            >
+              <Link
+                className="navbar-link"
+                to="#"
+                onClick={() => setIsClicked(!isClicked)}
+              >
+                <span className="icon">
+                  <FontAwesomeIcon icon={faUserCircle} />
+                </span>
+                <strong>
+                  {localStorage.getItem("__client") || "Visitante"}
+                </strong>
+              </Link>
+              <div className="navbar-dropdown">
+                <Link className="navbar-item" to="#">
+                  Perfil
+                </Link>
+                <hr className="navbar-divider" />
+                <Link
+                  className="navbar-item has-text-danger"
+                  to="/"
+                  onClick={logout}
+                >
+                  <strong>Sair</strong>
                 </Link>
               </div>
             </div>
