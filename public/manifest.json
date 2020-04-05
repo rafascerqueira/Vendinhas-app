@@ -1,0 +1,27 @@
+{
+  "short_name": "Vendinhas App",
+  "name": "App gestor de vendas",
+  "lang": "pt-BR",
+  "description": "Vendinhas é um aplicativo web que ajuda você a gerenciar suas vendas e seus produtos",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "v-de-vendinha.png",
+      "type": "image/png",
+      "sizes": "500x500"
+    },
+    {
+      "src": "Vendinhas.png",
+      "type": "image/png",
+      "sizes": "800x200"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
