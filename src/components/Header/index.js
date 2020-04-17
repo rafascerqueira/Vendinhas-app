@@ -43,7 +43,7 @@ const Header = () => {
           className={`navbar-menu ${isActive ? "is-active" : ""}`}
         >
           <div className="navbar-start">
-            <Link className="navbar-item" to="#">
+            <Link className="navbar-item" to="/sale">
               Pedidos
             </Link>
 

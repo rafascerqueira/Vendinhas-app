@@ -17,8 +17,11 @@ const Main = () => {
         </div>
       </section>
 
-      <div className="columns is-mobile is-multiline is-centered">
-        <div className="column is-narrow-desktop">
+      <div
+        className="columns is-mobile is-multiline is-centered"
+        style={{ marginTop: 10 }}
+      >
+        <div className="column is-narrow-desktop is-full-mobile">
           <div className="box notification is-primary">
             <div className="heading">top vendas total</div>
             <h1 className="title">246,68</h1>
@@ -38,7 +41,7 @@ const Main = () => {
             </div>
           </div>
         </div>
-        <div className="column is-narrow-desktop">
+        <div className="column is-narrow-desktop is-full-mobile">
           <div className="box notification is-warning">
             <div className="heading">top vendas total</div>
             <h1 className="title">246,68</h1>
@@ -58,7 +61,7 @@ const Main = () => {
             </div>
           </div>
         </div>
-        <div className="column is-narrow-desktop">
+        <div className="column is-narrow-desktop is-full-mobile">
           <div className="box notification is-link">
             <div className="heading">top vendas total</div>
             <h1 className="title">246,68</h1>
@@ -78,7 +81,7 @@ const Main = () => {
             </div>
           </div>
         </div>
-        <div className="column is-narrow-desktop">
+        <div className="column is-narrow-desktop is-full-mobile">
           <div className="box notification is-danger">
             <div className="heading">top vendas total</div>
             <h1 className="title">246,68</h1>

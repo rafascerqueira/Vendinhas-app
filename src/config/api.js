@@ -5,18 +5,18 @@ const URL = "https://vendinhas.herokuapp.com/";
 // const URL = "http://localhost:3001";
 
 const api = axios.create({
-  baseURL: URL
+  baseURL: URL,
 });
 
 api.interceptors.request.use(
-  async config => {
+  async (config) => {
     const token = getToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  err => {
+  (err) => {
     return Promise.reject(err);
   }
 );
