@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
+import { getAllNames } from "../../helpers/customer";
 
 const Sale = () => {
   const [newcus, setNewcus] = useState(false);
+  const [item, setItem] = useState([]);
+
+  useEffect(() => {
+    function fetch() {
+      getAllNames().then((obj) =>
+        obj.map((customer) =>
+          setItem(<option value={customer.id}>{customer.fullname}</option>)
+        )
+      );
+    }
+
+    fetch();
+  }, []);
+
   return (
     <>
       <Header />
-
       <section className="hero is-light">
         <div className="hero-body">
           <div className="container">
@@ -16,7 +30,6 @@ const Sale = () => {
           </div>
         </div>
       </section>
-
       <div className="breadcrumb is-small is-centered" aria-label="breadcrumbs">
         <ul>
           <li>
@@ -27,16 +40,14 @@ const Sale = () => {
           </li>
         </ul>
       </div>
-
       <section style={{ marginTop: 10 }}>
-        {}
         <div className="container">
           <div className="field">
             <div className="control">
               <div className="select is-primary">
                 <select name="customer" id="customer" defaultValue={"DEFAULT"}>
                   <option value="DEFAULT">Cliente</option>
-                  <option value="DEFAULT">Luisa</option>
+                  {item}
                 </select>
               </div>
             </div>

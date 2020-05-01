@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
   faLock,
-  faSignInAlt
+  faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Logo from "../../img/Vendinhas.png";
 import "./style.css";
 
-const Signin = props => {
+const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -69,7 +69,7 @@ const Signin = props => {
                   className="input"
                   placeholder="E-mail"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faEnvelope} />
@@ -84,7 +84,7 @@ const Signin = props => {
                   className="input"
                   placeholder="Senha"
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <span className="icon is-small is-left">
                   <FontAwesomeIcon icon={faLock} />
@@ -112,7 +112,10 @@ const Signin = props => {
               </div>
             </div>
             {loading && (
-              <progress class="progress is-small is-dark" max="100"></progress>
+              <progress
+                className="progress is-small is-dark"
+                max="100"
+              ></progress>
             )}
           </div>
         </div>

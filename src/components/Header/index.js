@@ -66,9 +66,7 @@ const Header = () => {
                 <span className="icon">
                   <FontAwesomeIcon icon={faUserCircle} />
                 </span>
-                <strong>
-                  {localStorage.getItem("__client") || "Visitante"}
-                </strong>
+                <strong>{localStorage.getItem("__client")}</strong>
               </Link>
               <div className="navbar-dropdown">
                 <Link className="navbar-item" to="#">
