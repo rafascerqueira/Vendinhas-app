@@ -3,6 +3,8 @@ import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { getAllNames } from "../../helpers/customer";
 
+import "./style.css";
+
 const Sale = () => {
   const [newcus, setNewcus] = useState(false);
   const [item, setItem] = useState([]);
@@ -40,32 +42,42 @@ const Sale = () => {
           </li>
         </ul>
       </div>
-      <section style={{ marginTop: 10 }}>
+      <section>
         <div className="container">
-          <div className="field">
-            <div className="control">
-              <div className="select is-primary">
-                <select name="customer" id="customer" defaultValue={"DEFAULT"}>
-                  <option value="DEFAULT">Cliente</option>
-                  {item}
-                </select>
+          <fieldset disabled={newcus ? "disabled" : ""}>
+            <div className="field">
+              <div className="control">
+                <div className="select is-primary">
+                  <select
+                    name="customer"
+                    id="customer"
+                    defaultValue={"DEFAULT"}
+                  >
+                    <option disabled="disabled" value="DEFAULT">
+                      Escolha o Cliente
+                    </option>
+                    {item}
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
+          </fieldset>
 
-          <div className="field">
-            <div className="control">
-              <label htmlFor="new-client" className="checkbox">
-                <input
-                  type="checkbox"
-                  name="new-client"
-                  id="new-client"
-                  onChange={() => setNewcus(!newcus)}
-                />
-                <span> Novo cliente?</span>
-              </label>
+          <fieldset>
+            <div className="field">
+              <div className="control">
+                <label htmlFor="new-client" className="checkbox">
+                  <input
+                    type="checkbox"
+                    name="new-client"
+                    id="new-client"
+                    onChange={() => setNewcus(!newcus)}
+                  />
+                  <span> Novo cliente?</span>
+                </label>
+              </div>
             </div>
-          </div>
+          </fieldset>
 
           {newcus && (
             <div className="columns">
@@ -97,6 +109,31 @@ const Sale = () => {
                     <button className="button">Cancelar</button>
                   </p>
                 </div>
+              </div>
+            </div>
+          )}
+          {!newcus && (
+            <div className="field">
+              <label className="label">Lançar produtos</label>
+              <div className="field is-horizontal has-addons">
+                <p className="control">
+                  <label className="label">cód.:</label>
+                  <input className="input" type="text" maxLength="6" size="4" />
+                </p>
+                <p className="control">
+                  <label className="label">Nome</label>
+                  <input className="input" type="text" readOnly />
+                </p>
+                <p className="control">
+                  <label className="label">Qtde.</label>
+                  <input className="input" type="text" maxLength="2" size="2" />
+                </p>
+                <p className="control">
+                  <label className="label">Incluir</label>
+                  <Link to="#" className="button is-info">
+                    +
+                  </Link>
+                </p>
               </div>
             </div>
           )}
