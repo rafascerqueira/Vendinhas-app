@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
-import { getAllNames } from "../../helpers/customer";
+import { getAllNames, setNewCustomer } from "../../helpers/customer";
 
 import "./style.css";
 
 const Sale = () => {
   const [newcus, setNewcus] = useState(false);
   const [item, setItem] = useState([]);
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     function fetch() {
-      getAllNames().then((obj) =>
-        obj.map((customer) =>
-          setItem(<option value={customer.id}>{customer.fullname}</option>)
-        )
-      );
+      getAllNames().then((obj) => setItem(obj));
     }
 
     fetch();
   }, []);
-
   return (
     <>
       <Header />
@@ -56,7 +53,9 @@ const Sale = () => {
                     <option disabled="disabled" value="DEFAULT">
                       Escolha o Cliente
                     </option>
-                    {item}
+                    {item.map((customer) => (
+                      <option key={customer.id}>{customer.fullname}</option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -88,6 +87,8 @@ const Sale = () => {
                       type="text"
                       className="input"
                       placeholder="Nome completo"
+                      value={fullname}
+                      onChange={(e) => setFullname(e.target.value)}
                     />
                   </div>
                 </div>
@@ -97,13 +98,21 @@ const Sale = () => {
                       type="email"
                       className="input"
                       placeholder="E-mail"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
                 </div>
 
                 <div className="field is-grouped is-grouped-centered">
                   <p className="control">
-                    <button className="button is-link">Salvar</button>
+                    <button
+                      className="button is-link"
+                      type="button"
+                      onClick={() => setNewCustomer({ fullname, email })}
+                    >
+                      Salvar
+                    </button>
                   </p>
                   <p className="control">
                     <button className="button">Cancelar</button>
