@@ -3,8 +3,6 @@ import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { getAllNames, setNewCustomer } from "../../helpers/customer";
 
-import "./style.css";
-
 const Sale = () => {
   const [newcus, setNewcus] = useState(false);
   const [item, setItem] = useState([]);
@@ -63,7 +61,7 @@ const Sale = () => {
           </fieldset>
 
           <fieldset>
-            <div className="field">
+            <div className="field my-4">
               <div className="control">
                 <label htmlFor="new-client" className="checkbox">
                   <input
