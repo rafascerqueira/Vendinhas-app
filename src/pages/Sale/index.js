@@ -2,20 +2,42 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { getAllNames, setNewCustomer } from "../../helpers/customer";
+import { getOneProduct, getAllProducts } from "../../helpers/product";
+import { setPurchaseOrder } from "../../helpers/sale";
 
 const Sale = () => {
+  // Next update I'll reduce code below.
   const [newcus, setNewcus] = useState(false);
-  const [item, setItem] = useState([]);
+  const [customerList, setCustomerList] = useState([]);
+  const [customerId, setCustomerId] = useState("");
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
+  const [order, setOrder] = useState([]);
+  const [productList, setProductList] = useState([]);
+  const [prodId, setProdId] = useState("");
+  const [qty, setQty] = useState("");
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     function fetch() {
-      getAllNames().then((obj) => setItem(obj));
+      getAllNames().then((obj) => setCustomerList(obj));
+      getAllProducts().then((obj) => setProductList(obj));
     }
 
     fetch();
   }, []);
+
+  function addToOrder(event) {
+    event.preventDefault();
+    let prod = getOneProduct(prodId, productList);
+    if (!prod[0]) return setErr("Produto não encontrado");
+    if (isNaN(qty)) return setErr("Favor inserir um número válido. (Ex.: 1)");
+    prod[0].qty = qty;
+    let stuff = order.filter((obj) => obj.id === prod[0].id);
+    if (!stuff.length) {
+      setOrder((order) => order.concat(prod));
+    }
+  }
   return (
     <>
       <Header />
@@ -51,8 +73,13 @@ const Sale = () => {
                     <option disabled="disabled" value="DEFAULT">
                       Escolha o Cliente
                     </option>
-                    {item.map((customer) => (
-                      <option key={customer.id}>{customer.fullname}</option>
+                    {customerList.map((customer) => (
+                      <option
+                        key={customer.id}
+                        onClick={() => setCustomerId(customer.id)}
+                      >
+                        {customer.fullname}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -135,11 +162,8 @@ const Sale = () => {
                         type="text"
                         maxLength="6"
                         size="4"
+                        onChange={(e) => setProdId(e.target.value)}
                       />
-                    </p>
-                    <p className="control">
-                      <label className="label">Nome</label>
-                      <input className="input" type="text" readOnly />
                     </p>
                     <p className="control">
                       <label className="label">Qtde.</label>
@@ -148,19 +172,32 @@ const Sale = () => {
                         type="text"
                         maxLength="2"
                         size="2"
+                        onChange={(e) => setQty(Math.abs(e.target.value))}
                       />
                     </p>
                     <p className="control">
                       <label className="label">Incluir</label>
-                      <Link to="#" className="button is-info">
+                      <Link
+                        to="#"
+                        className="button is-info"
+                        onClick={(e) => addToOrder(e)}
+                      >
                         +
                       </Link>
                     </p>
                   </div>
+                  {err && (
+                    <div className="notification is-danger is-light">
+                      {err}
+                      <button
+                        className="delete"
+                        onClick={() => setErr("")}
+                      ></button>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="column is-11-mobile is-offset-1-mobile">
-                {/* New Feature here */}
                 <div className="field">
                   <label className="label">Incluídos</label>
                   <table className="table is-hoverable">
@@ -173,37 +210,71 @@ const Sale = () => {
                         <th>
                           <abbr title="Quantidade">Qtde.</abbr>
                         </th>
+                        <th>Preço Un</th>
+                        <th>Valor</th>
                         <th>Ação</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tfoot>
                       <tr>
-                        <td>42356</td>
-                        <td>Fire TV Stick</td>
-                        <td>1</td>
-                        <td>
-                          <div className="field is-grouped">
-                            <p className="control">
-                              <Link
-                                to="#"
-                                className="button is-danger is-small"
-                              >
-                                -
-                              </Link>
-                            </p>
-                            <p className="control">
-                              <Link
-                                to="#"
-                                className="button is-warning is-small"
-                              >
-                                +
-                              </Link>
-                            </p>
-                          </div>
-                        </td>
+                        <th colSpan="5">TOTAL</th>
+                        <th>
+                          {order
+                            .map((product) => product.price * product.qty)
+                            .reduce((total, price) => {
+                              let result =
+                                parseFloat(total) + parseFloat(price);
+                              return result.toFixed(2);
+                            }, "0.00")}
+                        </th>
                       </tr>
+                    </tfoot>
+                    <tbody>
+                      {order.map((product, key) => (
+                        <tr key={key}>
+                          <td>{product.id}</td>
+                          <td>{product.name}</td>
+                          <td>{product.qty}</td>
+                          <td>{product.price}</td>
+                          <td>
+                            {parseFloat(product.price * product.qty).toFixed(2)}
+                          </td>
+                          <td>
+                            <div className="field is-grouped">
+                              <p className="control">
+                                <Link
+                                  to="#"
+                                  className="button is-danger is-small"
+                                  onClick={() =>
+                                    product.qty > 1
+                                      ? product.qty--
+                                      : order.splice(key, 1)
+                                  }
+                                >
+                                  -
+                                </Link>
+                              </p>
+                              <p className="control">
+                                <Link
+                                  to="#"
+                                  className="button is-warning is-small"
+                                  onClick={() => product.qty++}
+                                >
+                                  +
+                                </Link>
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
+                  <button
+                    className="button is-info"
+                    onClick={() => setPurchaseOrder(customerId, order)}
+                  >
+                    Incluir ordem de compra
+                  </button>
                 </div>
               </div>
             </div>
