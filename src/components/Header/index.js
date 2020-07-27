@@ -47,7 +47,7 @@ const Header = () => {
               Pedidos
             </Link>
 
-            <Link className="navbar-item" to="#">
+            <Link className="navbar-item" to="/stock">
               Estoque
             </Link>
           </div>
