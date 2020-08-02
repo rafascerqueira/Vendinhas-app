@@ -6,6 +6,7 @@ import Signup from "../pages/Signup";
 import Main from "../pages/Main";
 import Sale from "../pages/Sale";
 import Stock from "../pages/Stock";
+import UserPerfil from "../pages/UserPerfil";
 
 export default () => (
   <BrowserRouter>
@@ -15,6 +16,7 @@ export default () => (
       <PrivateRoute path="/main" component={Main} />
       <PrivateRoute path="/sale" component={Sale} />
       <PrivateRoute path="/stock" component={Stock} />
+      <PrivateRoute path="/perfil" component={UserPerfil} />
       <Redirect from="*" to="/" />
     </Switch>
   </BrowserRouter>

@@ -8,7 +8,7 @@ const Main = () => {
     <>
       <Header />
 
-      <section className="hero is-info">
+      <section className="hero is-info is-bold">
         <div className="hero-body">
           <div className="container">
             <h1 className="title is-2">Início</h1>

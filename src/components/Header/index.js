@@ -69,7 +69,7 @@ const Header = () => {
                 <strong>{localStorage.getItem("__client")}</strong>
               </Link>
               <div className="navbar-dropdown">
-                <Link className="navbar-item" to="#">
+                <Link className="navbar-item" to="/perfil">
                   Perfil
                 </Link>
                 <hr className="navbar-divider" />
