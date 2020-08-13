@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { getAllNames, setNewCustomer } from "../../helpers/customer";
-import { getOneProduct, getAllProducts } from "../../helpers/product";
+import {
+  getOneProduct,
+  getAllProducts,
+  dotToComma,
+} from "../../helpers/product";
 import { setPurchaseOrder } from "../../helpers/sale";
 
 const Sale = () => {
@@ -224,8 +228,8 @@ const Sale = () => {
                             .reduce((total, price) => {
                               let result =
                                 parseFloat(total) + parseFloat(price);
-                              return result.toFixed(2);
-                            }, "0.00")}
+                              return dotToComma(result.toFixed(2));
+                            }, "0,00")}
                         </th>
                       </tr>
                     </tfoot>
@@ -235,9 +239,11 @@ const Sale = () => {
                           <td>{product.id}</td>
                           <td>{product.name}</td>
                           <td>{product.qty}</td>
-                          <td>{product.price}</td>
+                          <td>{dotToComma(product.price)}</td>
                           <td>
-                            {parseFloat(product.price * product.qty).toFixed(2)}
+                            {dotToComma(
+                              parseFloat(product.price * product.qty).toFixed(2)
+                            )}
                           </td>
                           <td>
                             <div className="field is-grouped">

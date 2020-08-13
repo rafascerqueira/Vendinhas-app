@@ -32,6 +32,7 @@ const Signin = (props) => {
       setError("");
       setLoading(true);
       const req = await api.post("/signin", { email, password });
+      localStorage.setItem("__id", req.data.id);
       localStorage.setItem("__client", req.data.name);
       localStorage.setItem("__token", req.data.token);
       props.history.push("/main");

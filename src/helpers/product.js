@@ -15,3 +15,7 @@ export const setProduct = (payload) => {
     .catch((error) => console.error(error));
   return window.location.reload();
 };
+
+export const dotToComma = (price) => price.replace(".", ",");
+
+export const commaToDot = (price) => price.replace(",", ".");

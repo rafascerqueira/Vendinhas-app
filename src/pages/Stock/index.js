@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
-import { setProduct, getAllProducts } from "../../helpers/product";
+import {
+  setProduct,
+  getAllProducts,
+  dotToComma,
+  commaToDot,
+} from "../../helpers/product";
 
 const Stock = () => {
   const [name, setName] = useState("");
@@ -92,7 +97,7 @@ const Stock = () => {
                     <td>{product.name}</td>
                     <td>{product.unit}</td>
                     <td>{product.size}</td>
-                    <td>{product.price}</td>
+                    <td>{dotToComma(product.price)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -172,7 +177,7 @@ const Stock = () => {
                         <input
                           className="input is-primary"
                           value={price}
-                          onChange={(e) => setPrice(e.target.value)}
+                          onChange={(e) => setPrice(commaToDot(e.target.value))}
                         />
                       </p>
                     </div>
