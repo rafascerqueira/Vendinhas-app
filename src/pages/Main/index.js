@@ -11,7 +11,7 @@ const Main = () => {
       <section className="hero is-info is-bold">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title is-2">Início</h1>
+            <h1 className="title">Início</h1>
             <h2 className="subtitle">Resumo Geral</h2>
           </div>
         </div>

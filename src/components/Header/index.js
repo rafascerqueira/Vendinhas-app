@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../img/Vendinhas.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import Doge from "../../img/doge-worker-helmet.png";
 
 import "./style.css";
 
@@ -53,6 +52,11 @@ const Header = () => {
           </div>
 
           <div className="navbar-end">
+            <figure className="media-left py-1">
+              <p className="image is-48x48">
+                <img src={Doge} />
+              </p>
+            </figure>
             <div
               className={`navbar-item has-dropdown ${
                 isClicked ? "is-active" : ""
@@ -63,9 +67,6 @@ const Header = () => {
                 to="#"
                 onClick={() => setIsClicked(!isClicked)}
               >
-                <span className="icon">
-                  <FontAwesomeIcon icon={faUserCircle} />
-                </span>
                 <strong>{localStorage.getItem("__client")}</strong>
               </Link>
               <div className="navbar-dropdown">
