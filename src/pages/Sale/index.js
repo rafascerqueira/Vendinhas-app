@@ -228,8 +228,8 @@ const Sale = () => {
                             .reduce((total, price) => {
                               let result =
                                 parseFloat(total) + parseFloat(price);
-                              return dotToComma(result.toFixed(2));
-                            }, "0,00")}
+                              return result.toFixed(2);
+                            }, "0.00")}
                         </th>
                       </tr>
                     </tfoot>

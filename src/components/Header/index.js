@@ -54,7 +54,7 @@ const Header = () => {
           <div className="navbar-end">
             <figure className="media-left py-1">
               <p className="image is-48x48">
-                <img src={Doge} />
+                <img src={Doge} alt="foto de perfil" />
               </p>
             </figure>
             <div
