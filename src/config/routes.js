@@ -7,6 +7,7 @@ import Main from "../pages/Main";
 import Sale from "../pages/Sale";
 import Stock from "../pages/Stock";
 import UserPerfil from "../pages/UserPerfil";
+import Billing from "../pages/Billing";
 
 export default () => (
   <BrowserRouter>
@@ -17,6 +18,7 @@ export default () => (
       <PrivateRoute path="/sale" component={Sale} />
       <PrivateRoute path="/stock" component={Stock} />
       <PrivateRoute path="/perfil" component={UserPerfil} />
+      <PrivateRoute path="/billing" component={Billing} />
       <Redirect from="*" to="/" />
     </Switch>
   </BrowserRouter>

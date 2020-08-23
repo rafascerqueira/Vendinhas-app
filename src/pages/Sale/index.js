@@ -9,8 +9,10 @@ import {
 } from "../../helpers/product";
 import { setPurchaseOrder } from "../../helpers/sale";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+
 const Sale = () => {
-  // Next update I'll reduce code below.
   const [newcus, setNewcus] = useState(false);
   const [customerList, setCustomerList] = useState([]);
   const [customerId, setCustomerId] = useState("");
@@ -65,47 +67,50 @@ const Sale = () => {
       </div>
       <section>
         <div className="container">
-          <fieldset disabled={newcus ? "disabled" : ""}>
-            <div className="field">
-              <div className="control">
-                <div className="select is-primary">
-                  <select
-                    name="customer"
-                    id="customer"
-                    defaultValue={"DEFAULT"}
-                  >
-                    <option disabled="disabled" value="DEFAULT">
-                      Escolha o Cliente
-                    </option>
-                    {customerList.map((customer) => (
-                      <option
-                        key={customer.id}
-                        onClick={() => setCustomerId(customer.id)}
+          <div className="columns">
+            <div className="column is-10-mobile is-offset-1-mobile">
+              <fieldset disabled={newcus ? "disabled" : ""}>
+                <div className="field">
+                  <div className="control">
+                    <div className="select is-primary">
+                      <select
+                        name="customer"
+                        id="customer"
+                        defaultValue={"DEFAULT"}
                       >
-                        {customer.fullname}
-                      </option>
-                    ))}
-                  </select>
+                        <option disabled="disabled" value="DEFAULT">
+                          Escolha o Cliente
+                        </option>
+                        {customerList.map((customer) => (
+                          <option
+                            key={customer.id}
+                            onClick={() => setCustomerId(customer.id)}
+                          >
+                            {customer.fullname}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </fieldset>
+              <fieldset>
+                <div className="field my-4">
+                  <div className="control">
+                    <label htmlFor="new-client" className="checkbox">
+                      <input
+                        type="checkbox"
+                        name="new-client"
+                        id="new-client"
+                        onChange={() => setNewcus(!newcus)}
+                      />
+                      <span> Novo cliente?</span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
             </div>
-          </fieldset>
-
-          <fieldset>
-            <div className="field my-4">
-              <div className="control">
-                <label htmlFor="new-client" className="checkbox">
-                  <input
-                    type="checkbox"
-                    name="new-client"
-                    id="new-client"
-                    onChange={() => setNewcus(!newcus)}
-                  />
-                  <span> Novo cliente?</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          </div>
 
           {newcus && (
             <div className="columns">
@@ -155,9 +160,11 @@ const Sale = () => {
           )}
           {!newcus && (
             <div className="columns">
-              <div className="column is-11-mobile is-offset-1-mobile">
+              <div className="column is-10-mobile is-offset-1-mobile">
                 <div className="field">
-                  <label className="label">Lançar produtos</label>
+                  <label className="label has-text-centered-mobile">
+                    Lançar produtos
+                  </label>
                   <div className="field is-horizontal has-addons">
                     <p className="control">
                       <label className="label">cód.:</label>
@@ -186,7 +193,9 @@ const Sale = () => {
                         className="button is-info"
                         onClick={(e) => addToOrder(e)}
                       >
-                        +
+                        <span className="px-3">
+                          <FontAwesomeIcon icon={faPlus} />
+                        </span>
                       </Link>
                     </p>
                   </div>
@@ -201,9 +210,11 @@ const Sale = () => {
                   )}
                 </div>
               </div>
-              <div className="column is-11-mobile is-offset-1-mobile">
+              <div className="column">
                 <div className="field">
-                  <label className="label">Incluídos</label>
+                  <label className="label has-text-centered-mobile">
+                    Incluídos
+                  </label>
                   <table className="table is-hoverable">
                     <thead>
                       <tr>
@@ -275,12 +286,17 @@ const Sale = () => {
                       ))}
                     </tbody>
                   </table>
-                  <button
-                    className="button is-info"
-                    onClick={() => setPurchaseOrder(customerId, order)}
-                  >
-                    Incluir ordem de compra
-                  </button>
+                  <div className="field is-grouped is-grouped-centered">
+                    <div className="control">
+                      <button
+                        className="button is-info"
+                        onClick={() => setPurchaseOrder(customerId, order)}
+                      >
+                        <FontAwesomeIcon icon={faCartPlus} />
+                        <span className="pl-1">Incluir</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
