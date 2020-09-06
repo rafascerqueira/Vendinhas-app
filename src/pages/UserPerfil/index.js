@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Header from "../../components/Header";
+import Section from "../../components/Section";
 import { getUserFromApi } from "../../helpers/user";
 import Doge from "../../img/doge-worker-helmet.png";
 
@@ -23,24 +23,12 @@ const UserPerfil = () => {
   return (
     <>
       <Header />
-      <section className="hero is-success is-bold">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">Perfil de Usuário</h1>
-            <h2 className="subtitle">configurações e gerenciamento</h2>
-          </div>
-        </div>
-      </section>
-      <div className="breadcrumb is-small is-centered" aria-label="breadcrumbs">
-        <ul>
-          <li>
-            <Link to="/main">Home</Link>
-          </li>
-          <li className="is-active">
-            <Link to="#">Perfil</Link>
-          </li>
-        </ul>
-      </div>
+      <Section
+        hero="hero is-success is-bold"
+        page="Perfil"
+        description="configurações e gerenciamento"
+      />
+
       <div className="columns">
         <div className="column px-6">
           <div className="card">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
+import Section from "../../components/Section";
 import { Link } from "react-router-dom";
 import { getAllNames, setNewCustomer } from "../../helpers/customer";
 import {
@@ -47,24 +48,11 @@ const Sale = () => {
   return (
     <>
       <Header />
-      <section className="hero is-light">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">Pedidos de Venda</h1>
-            <h2 className="subtitle">registre novos pedidos aqui</h2>
-          </div>
-        </div>
-      </section>
-      <div className="breadcrumb is-small is-centered" aria-label="breadcrumbs">
-        <ul>
-          <li>
-            <Link to="/main">Home</Link>
-          </li>
-          <li className="is-active">
-            <Link to="#">Pedidos</Link>
-          </li>
-        </ul>
-      </div>
+      <Section
+        hero="hero is-light"
+        page="Pedidos"
+        description="registre novos pedidos aqui"
+      />
       <section>
         <div className="container">
           <div className="columns">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Header from "../../components/Header";
+import Section from "../../components/Section";
 import {
   setProduct,
   getAllProducts,
@@ -34,24 +34,11 @@ const Stock = () => {
   return (
     <>
       <Header />
-      <section className="hero is-warning is-bold">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title">Estoque dos Produtos</h1>
-            <h2 className="subtitle">Consulte, registre e pequise aqui</h2>
-          </div>
-        </div>
-      </section>
-      <div className="breadcrumb is-small is-centered" aria-label="breadcrumbs">
-        <ul>
-          <li>
-            <Link to="/main">Home</Link>
-          </li>
-          <li className="is-active">
-            <Link to="#">Estoque</Link>
-          </li>
-        </ul>
-      </div>
+      <Section
+        hero="hero is-warning is-bold"
+        page="Estoque"
+        description="Consulte, registre e pequise aqui"
+      />
 
       <div className="container">
         <div className="columns">
