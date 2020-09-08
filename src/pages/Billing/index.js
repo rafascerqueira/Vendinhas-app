@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Section from "../../components/Section";
 import { Link } from "react-router-dom";
@@ -8,7 +8,19 @@ import {
   faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { getBilling } from "../../helpers/billing";
+
 const Billing = () => {
+  const [bill, setBill] = useState([]);
+
+  useEffect(() => {
+    function fetch() {
+      getBilling().then((arr) => setBill(arr));
+    }
+
+    fetch();
+  }, []);
+
   return (
     <>
       <Header />
@@ -32,6 +44,31 @@ const Billing = () => {
               </tr>
             </thead>
             <tbody>
+              {bill.map((invoice, key) => (
+                <tr key={key}>
+                  <td>teste</td>
+                  <td>{invoice.createdAt}</td>
+                  <td>0,00</td>
+                  <td>
+                    <div className="field is-grouped">
+                      <p className="control">
+                        <Link to="#" className="button is-success">
+                          <span>
+                            <FontAwesomeIcon icon={faFileInvoiceDollar} />
+                          </span>
+                        </Link>
+                      </p>
+                      <p className="control">
+                        <Link to="#" className="button is-warning">
+                          <span>
+                            <FontAwesomeIcon icon={faFileAlt} />
+                          </span>
+                        </Link>
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              ))}
               <tr>
                 <td>Teste</td>
                 <td>25/04/2020</td>
