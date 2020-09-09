@@ -13,6 +13,7 @@ const UserPerfil = () => {
   useEffect(() => {
     async function fetch() {
       const obj = await getUserFromApi();
+      obj.createdAt = new Date(obj.createdAt).toLocaleDateString();
       setUser(obj);
       setFname(obj.fullname);
       setEmail(obj.email);
@@ -43,7 +44,7 @@ const UserPerfil = () => {
                 <br />
                 <span>{email}</span>
                 <br />
-                <time dateTime="2016-1-1">{user.createdAt}</time>
+                <time dateTime="2016-1-1">Desde: {user.createdAt}</time>
               </div>
             </div>
           </div>

@@ -15,7 +15,13 @@ const Billing = () => {
 
   useEffect(() => {
     function fetch() {
-      getBilling().then((arr) => setBill(arr));
+      getBilling().then((arr) => {
+        arr.map((obj) => {
+          let parseDate = new Date(obj.createdAt).toLocaleDateString();
+          return (obj.createdAt = parseDate);
+        });
+        setBill(arr);
+      });
     }
 
     fetch();
