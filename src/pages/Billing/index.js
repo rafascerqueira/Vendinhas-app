@@ -52,9 +52,9 @@ const Billing = () => {
             <tbody>
               {bill.map((invoice, key) => (
                 <tr key={key}>
-                  <td>teste</td>
+                  <td>{invoice.Order.Customer.fullname}</td>
                   <td>{invoice.createdAt}</td>
-                  <td>0,00</td>
+                  <td>{invoice.Order.total_amount}</td>
                   <td>
                     <div className="field is-grouped">
                       <p className="control">
