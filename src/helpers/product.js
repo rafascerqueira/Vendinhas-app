@@ -16,6 +16,13 @@ export const setProduct = (payload) => {
   return window.location.reload();
 };
 
-export const dotToComma = (price) => price.replace(".", ",");
+export const currencyFormat = (price) =>
+  new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
 
-export const commaToDot = (price) => price.replace(",", ".");
+export const commaToDot = (price) => {
+  let clearPrice = price.replaceAll(".", "");
+  return clearPrice.replace(",", ".");
+};

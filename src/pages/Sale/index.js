@@ -6,7 +6,7 @@ import { getAllNames, setNewCustomer } from "../../helpers/customer";
 import {
   getOneProduct,
   getAllProducts,
-  dotToComma,
+  currencyFormat,
 } from "../../helpers/product";
 import { setPurchaseOrder } from "../../helpers/sale";
 
@@ -222,13 +222,15 @@ const Sale = () => {
                       <tr>
                         <th colSpan="5">TOTAL</th>
                         <th>
-                          {order
-                            .map((product) => product.price * product.qty)
-                            .reduce((total, price) => {
-                              let result =
-                                parseFloat(total) + parseFloat(price);
-                              return result.toFixed(2);
-                            }, "0.00")}
+                          {currencyFormat(
+                            order
+                              .map((product) => product.price * product.qty)
+                              .reduce((total, price) => {
+                                let result =
+                                  parseFloat(total) + parseFloat(price);
+                                return result.toFixed(2);
+                              }, "0.00")
+                          )}
                         </th>
                       </tr>
                     </tfoot>
@@ -238,9 +240,9 @@ const Sale = () => {
                           <td>{product.id}</td>
                           <td>{product.name}</td>
                           <td>{product.qty}</td>
-                          <td>{dotToComma(product.price)}</td>
+                          <td>{currencyFormat(product.price)}</td>
                           <td>
-                            {dotToComma(
+                            {currencyFormat(
                               parseFloat(product.price * product.qty).toFixed(2)
                             )}
                           </td>

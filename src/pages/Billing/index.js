@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { getBilling } from "../../helpers/billing";
+import { currencyFormat } from "../../helpers/product";
 
 const Billing = () => {
   const [bill, setBill] = useState([]);
@@ -54,7 +55,7 @@ const Billing = () => {
                 <tr key={key}>
                   <td>{invoice.Order.Customer.fullname}</td>
                   <td>{invoice.createdAt}</td>
-                  <td>{invoice.Order.total_amount}</td>
+                  <td>{currencyFormat(invoice.Order.total_amount)}</td>
                   <td>
                     <div className="field is-grouped">
                       <p className="control">

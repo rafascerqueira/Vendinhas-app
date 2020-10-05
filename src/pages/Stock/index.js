@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import NumberFormat from "react-number-format";
 import Header from "../../components/Header";
 import Section from "../../components/Section";
 import {
   setProduct,
   getAllProducts,
-  dotToComma,
+  currencyFormat,
   commaToDot,
 } from "../../helpers/product";
 
@@ -80,7 +81,7 @@ const Stock = () => {
                           <td>{product.name}</td>
                           <td>{product.unit}</td>
                           <td>{product.size}</td>
-                          <td>{dotToComma(product.price)}</td>
+                          <td>{currencyFormat(product.price)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -157,9 +158,12 @@ const Stock = () => {
                         <div className="field-body">
                           <div className="field">
                             <p className="control">
-                              <input
+                              <NumberFormat
                                 className="input is-primary"
-                                value={price}
+                                displayType={"input"}
+                                thousandSeparator={"."}
+                                decimalSeparator={","}
+                                decimalScale={2}
                                 onChange={(e) =>
                                   setPrice(commaToDot(e.target.value))
                                 }
