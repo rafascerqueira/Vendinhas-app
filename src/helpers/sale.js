@@ -26,3 +26,11 @@ export const setPurchaseOrder = async (customerId, order) => {
     return window.location.reload();
   });
 };
+
+/**
+ * show order list chosing `true` to get orders when complete cicle,
+ * `false` to pending order cicle
+ * @param {boolean} status
+ */
+export const showSelectedOrder = (status) =>
+  api.post("/order/list", { status }).then((req) => req.data);
