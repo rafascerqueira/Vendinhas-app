@@ -9,6 +9,7 @@ import Stock from "../pages/Stock";
 import UserPerfil from "../pages/UserPerfil";
 import Billing from "../pages/Billing";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => (
   <BrowserRouter>
     <Switch>

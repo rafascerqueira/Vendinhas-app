@@ -11,7 +11,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { showSelectedOrder } from "../../helpers/sale";
-import { showSelectedBill } from "../../helpers/billing";
+import {
+  showSelectedBill,
+  setNewBill,
+  payingBill,
+  hidePendingBill,
+} from "../../helpers/billing";
+import { deleteOrder } from "../../helpers/order";
 import { currencyFormat } from "../../helpers/product";
 
 const Billing = () => {
@@ -63,45 +69,30 @@ const Billing = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Teste</td>
-                <td>25/04/2020</td>
-                <td>384,66</td>
-                <td>
-                  <div className="field is-grouped">
-                    <p className="control">
-                      <Link to="#" className="button is-info">
-                        <span>
-                          <FontAwesomeIcon icon={faPlus} />
-                        </span>
-                      </Link>
-                    </p>
-                    <p className="control">
-                      <Link to="#" className="button is-danger">
-                        <span>
-                          <FontAwesomeIcon icon={faWindowClose} />
-                        </span>
-                      </Link>
-                    </p>
-                  </div>
-                </td>
-              </tr>
-              {bill.map((invoice, key) => (
+              {bill.map((order, key) => (
                 <tr key={key}>
-                  <td>{invoice.Customer.fullname}</td>
-                  <td>{invoice.createdAt}</td>
-                  <td>{currencyFormat(invoice.total_amount)}</td>
+                  <td>{order.Customer.fullname}</td>
+                  <td>{order.createdAt}</td>
+                  <td>{currencyFormat(order.total_amount)}</td>
                   <td>
                     <div className="field is-grouped">
                       <p className="control">
-                        <Link to="#" className="button is-info">
+                        <Link
+                          to="#"
+                          className="button is-info"
+                          onClick={() => setNewBill(order.id)}
+                        >
                           <span>
                             <FontAwesomeIcon icon={faPlus} />
                           </span>
                         </Link>
                       </p>
                       <p className="control">
-                        <Link to="#" className="button is-danger">
+                        <Link
+                          to="#"
+                          className="button is-danger"
+                          onClick={() => deleteOrder(order.id)}
+                        >
                           <span>
                             <FontAwesomeIcon icon={faWindowClose} />
                           </span>
@@ -126,22 +117,33 @@ const Billing = () => {
               </tr>
             </thead>
             <tbody>
-              {openBills.map((resp, key) => (
-                <tr key={key}>
-                  <td>{resp.Order.Customer.fullname}</td>
-                  <td>{resp.createdAt}</td>
-                  <td>{currencyFormat(resp.Order.total_amount)}</td>
+              {openBills.map((invoice, key) => (
+                <tr key={key} id={`open-bill-${key}`}>
+                  <td>{invoice.Order.Customer.fullname}</td>
+                  <td>{invoice.createdAt}</td>
+                  <td>{currencyFormat(invoice.Order.total_amount)}</td>
                   <td>
                     <div className="field is-grouped">
                       <p className="control">
-                        <Link to="#" className="button is-success">
+                        <Link
+                          to="#"
+                          className="button is-success"
+                          onDoubleClick={() => payingBill(invoice.id)}
+                        >
                           <span>
                             <FontAwesomeIcon icon={faCheck} />
                           </span>
                         </Link>
                       </p>
                       <p className="control">
-                        <Link to="#" className="button is-warning">
+                        <Link
+                          to="#"
+                          className="button is-warning"
+                          onClick={() => {
+                            let id = `open-bill-${key}`;
+                            hidePendingBill(id);
+                          }}
+                        >
                           <span>
                             <FontAwesomeIcon icon={faExclamationTriangle} />
                           </span>
@@ -151,29 +153,6 @@ const Billing = () => {
                   </td>
                 </tr>
               ))}
-              <tr>
-                <td>Teste</td>
-                <td>25/04/2020</td>
-                <td>384,66</td>
-                <td>
-                  <div className="field is-grouped">
-                    <p className="control">
-                      <Link to="#" className="button is-success">
-                        <span>
-                          <FontAwesomeIcon icon={faCheck} />
-                        </span>
-                      </Link>
-                    </p>
-                    <p className="control">
-                      <Link to="#" className="button is-warning">
-                        <span>
-                          <FontAwesomeIcon icon={faExclamationTriangle} />
-                        </span>
-                      </Link>
-                    </p>
-                  </div>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
