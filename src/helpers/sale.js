@@ -7,8 +7,13 @@ const getOrderId = async (customerId) => {
   return id;
 };
 
+/** Setting purchase order in database
+ *
+ * @param {string|number} customerId - Customer id. Normaly loaded with Sale page
+ * @param {[object]} order - Order
+ */
 export const setPurchaseOrder = async (customerId, order) => {
-  const orderId = await getOrderId(customerId);
+  const orderId = getOrderId(customerId);
   order.map(async (product) => {
     let { id, qty } = product;
 
