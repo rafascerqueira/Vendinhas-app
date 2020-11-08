@@ -13,7 +13,7 @@ const getOrderId = async (customerId) => {
  * @param {[object]} order - Order
  */
 export const setPurchaseOrder = async (customerId, order) => {
-  const orderId = getOrderId(customerId);
+  const orderId = await getOrderId(customerId);
   order.map(async (product) => {
     let { id, qty } = product;
 
