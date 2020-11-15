@@ -65,15 +65,13 @@ const Sale = () => {
                         name="customer"
                         id="customer"
                         defaultValue={"DEFAULT"}
+                        onChange={(event) => setCustomerId(event.target.value)}
                       >
                         <option disabled="disabled" value="DEFAULT">
                           Escolha o Cliente
                         </option>
                         {customerList.map((customer) => (
-                          <option
-                            key={customer.id}
-                            onClick={() => setCustomerId(customer.id)}
-                          >
+                          <option key={customer.id} value={customer.id}>
                             {customer.fullname}
                           </option>
                         ))}
