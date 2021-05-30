@@ -17,7 +17,7 @@ const Sale = () => {
   const [newcus, setNewcus] = useState(false);
   const [customerList, setCustomerList] = useState([]);
   const [customerId, setCustomerId] = useState("");
-  const [fullname, setFullname] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [order, setOrder] = useState([]);
   const [productList, setProductList] = useState([]);
@@ -72,7 +72,7 @@ const Sale = () => {
                         </option>
                         {customerList.map((customer) => (
                           <option key={customer.id} value={customer.id}>
-                            {customer.fullname}
+                            {customer.name}
                           </option>
                         ))}
                       </select>
@@ -107,8 +107,8 @@ const Sale = () => {
                       type="text"
                       className="input"
                       placeholder="Nome completo"
-                      value={fullname}
-                      onChange={(e) => setFullname(e.target.value)}
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -130,7 +130,7 @@ const Sale = () => {
                       className="button is-link"
                       type="button"
                       onClick={() => {
-                        setNewCustomer({ fullname, email });
+                        setNewCustomer({ name, email });
                         window.location.reload();
                       }}
                     >

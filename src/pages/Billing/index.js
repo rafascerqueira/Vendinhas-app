@@ -71,7 +71,7 @@ const Billing = () => {
             <tbody>
               {bill.map((order, key) => (
                 <tr key={key}>
-                  <td>{order.Customer.fullname}</td>
+                  <td>{order.Customer.name}</td>
                   <td>{order.createdAt}</td>
                   <td>{currencyFormat(order.total_amount)}</td>
                   <td>
@@ -119,7 +119,7 @@ const Billing = () => {
             <tbody>
               {openBills.map((invoice, key) => (
                 <tr key={key} id={`open-bill-${key}`}>
-                  <td>{invoice.Order.Customer.fullname}</td>
+                  <td>{invoice.Order.Customer.name}</td>
                   <td>{invoice.createdAt}</td>
                   <td>{currencyFormat(invoice.Order.total_amount)}</td>
                   <td>
