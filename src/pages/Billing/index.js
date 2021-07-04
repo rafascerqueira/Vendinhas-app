@@ -49,17 +49,14 @@ const Billing = () => {
     <>
       <Header />
       <Section
-        hero="hero is-primary"
+        gradient="from-blue-100 to-purple-100"
         page="Faturamento"
         description="Organize suas cobranças"
       />
-      <div
-        className="columns is-centered my-2 has-text-centered"
-        id="billing-page"
-      >
-        <div className="column is-4">
-          <h2 className="subtitle">Pedidos em andamento</h2>
-          <table className="table is-narrow is-fullwidth">
+      <div className="" id="billing-page">
+        <div className="">
+          <h2 className="">Pedidos em andamento</h2>
+          <table className="">
             <thead>
               <tr>
                 <th>Cliente</th>

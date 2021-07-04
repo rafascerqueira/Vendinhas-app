@@ -1,96 +1,174 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../../img/Vendinhas.png";
 import Doge from "../../img/doge-worker-helmet.png";
 
-import "./style.css";
+const navigation = [
+  { name: "Dashboard", href: "/dashboard", current: true },
+  { name: "Pedidos", href: "/sale", current: false },
+  { name: "Estoque", href: "/stock", current: false },
+  { name: "Faturamento", href: "/billing", current: false },
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const Header = () => {
-  const [isActive, setIsActive] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-
   function logout() {
     localStorage.removeItem("__client");
     localStorage.removeItem("__token");
   }
 
   return (
-    <>
-      <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <Link className="navbar-item" to="/main">
-            <img src={Logo} alt="Logo Vendinhas" />
-          </Link>
+    <Disclosure as="nav" className="bg-gray-100">
+      {({ open }) => (
+        <>
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+            <div className="relative flex items-center justify-between h-16">
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                {/* Mobile menu button*/}
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
+              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex-shrink-0 flex items-center">
+                  <img
+                    className="block lg:hidden h-8 w-auto"
+                    src={Logo}
+                    alt="Workflow"
+                  />
+                  <img
+                    className="hidden lg:block h-8 w-auto"
+                    src={Logo}
+                    alt="Workflow"
+                  />
+                </div>
+                <div className="hidden sm:block sm:ml-6">
+                  <div className="flex space-x-4">
+                    {navigation.map((item) => (
+                      <NavLink
+                        key={item.name}
+                        to={item.href}
+                        activeClassName="bg-gray-900 !text-white"
+                        className="text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        aria-current={item.current ? "page" : undefined}
+                      >
+                        {item.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <button className="bg-gray-100 p-1 rounded-full text-indigo-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <span className="sr-only">View notifications</span>
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
 
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a
-            role="button"
-            className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarMainApp"
-            onClick={() => setIsActive(!isActive)}
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-
-        <div
-          id="navbarMainApp"
-          className={`navbar-menu ${isActive ? "is-active" : ""}`}
-        >
-          <div className="navbar-start">
-            <Link className="navbar-item" to="/sale">
-              Pedidos
-            </Link>
-
-            <Link className="navbar-item" to="/stock">
-              Estoque
-            </Link>
-
-            <Link className="navbar-item" to="/billing">
-              Faturamento
-            </Link>
-          </div>
-
-          <div className="navbar-end">
-            <figure className="media-left py-1">
-              <p className="image is-48x48">
-                <img src={Doge} alt="foto de perfil" />
-              </p>
-            </figure>
-            <div
-              className={`navbar-item has-dropdown ${
-                isClicked ? "is-active" : ""
-              } `}
-            >
-              <Link
-                className="navbar-link"
-                to="#"
-                onClick={() => setIsClicked(!isClicked)}
-              >
-                <strong>{localStorage.getItem("__client")}</strong>
-              </Link>
-              <div className="navbar-dropdown">
-                <Link className="navbar-item" to="/perfil">
-                  Perfil
-                </Link>
-                <hr className="navbar-divider" />
-                <Link
-                  className="navbar-item has-text-danger"
-                  to="/"
-                  onClick={logout}
-                >
-                  <strong>Sair</strong>
-                </Link>
+                {/* Profile dropdown */}
+                <Menu as="div" className="ml-3 relative">
+                  {({ open }) => (
+                    <>
+                      <div>
+                        <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                          <span className="sr-only">Open user menu</span>
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={Doge}
+                            alt="Perfil"
+                          />
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        show={open}
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items
+                          static
+                          className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        >
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/profile"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Perfil
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="#"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Configurações
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                                onClick={logout}
+                              >
+                                Sair
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </Menu.Items>
+                      </Transition>
+                    </>
+                  )}
+                </Menu>
               </div>
             </div>
           </div>
-        </div>
-      </nav>
-    </>
+
+          <Disclosure.Panel className="sm:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navigation.map((item) => (
+                <NavLink
+                  key={item.name}
+                  to={item.href}
+                  activeClassName="bg-gray-900 !text-white"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  aria-current={item.current ? "page" : undefined}
+                >
+                  {item.name}
+                </NavLink>
+              ))}
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
   );
 };
 

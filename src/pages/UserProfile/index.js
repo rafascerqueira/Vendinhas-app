@@ -4,7 +4,7 @@ import Section from "../../components/Section";
 import { getUserFromApi } from "../../helpers/user";
 import Doge from "../../img/doge-worker-helmet.png";
 
-const UserPerfil = () => {
+const UserProfile = () => {
   // eslint-disable-next-line
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
@@ -24,11 +24,7 @@ const UserPerfil = () => {
   return (
     <>
       <Header />
-      <Section
-        hero="hero is-success is-bold"
-        page="Perfil"
-        description="configurações e gerenciamento"
-      />
+      <Section page="Perfil" description="configurações e gerenciamento" />
 
       <div className="columns">
         <div className="column px-6">
@@ -94,4 +90,4 @@ const UserPerfil = () => {
   );
 };
 
-export default UserPerfil;
+export default UserProfile;
