@@ -5,83 +5,53 @@ import { getUserFromApi } from "../../helpers/user";
 import Doge from "../../img/doge-worker-helmet.png";
 
 const UserProfile = () => {
-  // eslint-disable-next-line
-  const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
+  const [firstname, setFirstname] = useState("");
   const [fname, setFname] = useState("");
+  const [since, setSince] = useState("");
+  const [isAdmin, SetIsAdmin] = useState(false);
 
   useEffect(() => {
     async function fetch() {
       const obj = await getUserFromApi();
       obj.createdAt = new Date(obj.createdAt).toLocaleDateString();
-      setUser(obj);
       setFname(obj.fullname);
+      setFirstname(fname.split(" ")[0]);
       setEmail(obj.email);
+      setSince(obj.createdAt);
+      SetIsAdmin(obj.admin);
     }
     fetch();
-  }, []);
+  }, [fname]);
 
   return (
     <>
       <Header />
       <Section page="Perfil" description="configurações e gerenciamento" />
 
-      <div className="columns">
-        <div className="column px-6">
-          <div className="card">
-            <div className="card-image">
-              <figure className="image px-2 py-2">
-                <img src={Doge} alt="imagem extendida" />
-              </figure>
-            </div>
-            <div className="card-content">
-              <div className="content">
-                <span className="title is-5">{fname}</span>
-                <br />
-                <span>{email}</span>
-                <br />
-                <time dateTime="2016-1-1">Desde: {user.createdAt}</time>
-              </div>
-            </div>
+      <div className="container mx-auto">
+        <div className="flex my-4 text-center">
+          <div className="bg-gray-400 md:rounded-tl-md md:rounded-bl-md">
+            <img
+              src={Doge}
+              alt="Perfil"
+              className="h-48 w-48 m-4 rounded-full border-2 shadow-lg bg-white"
+            />
+            <span className="flex justify-center text-lg uppercase">
+              {fname}
+            </span>
+            <span className="flex justify-center text-sm lowercase">
+              {email}
+            </span>
+            <span className="flex justify-center text-sm">
+              {isAdmin ? "(Admin)" : "(Usuário)"}
+            </span>
           </div>
-        </div>
 
-        <div className="column is-three-quarters">
-          <div className="card mx-6 px-2">
-            <div className="field is-horizontal my-2">
-              <div className="field-label is-normal">
-                <label className="label">Nome completo:</label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <p className="control">
-                    <input
-                      className="input is-static"
-                      type="text"
-                      value={fname || "carregando..."}
-                      readOnly
-                    />
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="field is-horizontal">
-              <div className="field-label is-normal">
-                <label className="label">Usuário:</label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <div className="control">
-                    <input
-                      className="input is-static"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      readOnly
-                    />
-                  </div>
-                </div>
-              </div>
+          <div className="flex-auto bg-indigo-300 md:rounded-tr-md md:rounded-br-md py-4">
+            <div className="text-white">
+              <h1 className="text-5xl">Bem vindo, {firstname}.</h1>
+              <h2 className="">Desde {since}</h2>
             </div>
           </div>
         </div>

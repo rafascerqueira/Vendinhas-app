@@ -4,7 +4,6 @@ import api from "../../config/api";
 import { LockClosedIcon } from "@heroicons/react/solid";
 
 import Logo from "../../img/Vendinhas.png";
-import "./style.css";
 
 const Signin = (props) => {
   const [email, setEmail] = useState("");
