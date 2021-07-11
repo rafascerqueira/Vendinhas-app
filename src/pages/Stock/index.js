@@ -11,10 +11,10 @@ import {
 
 const Stock = () => {
   const [name, setName] = useState("");
+  const [code, setCode] = useState("");
   const [unit, setUnit] = useState("");
   const [size, setSize] = useState("U");
   const [price, setPrice] = useState(0);
-  const [isClicked, setIsClicked] = useState(false);
   const [productList, setProductList] = useState([]);
   const [isNewProduct, setIsNewProduct] = useState(false);
 
@@ -27,24 +27,19 @@ const Stock = () => {
   }, []);
 
   function handleDataset() {
-    setIsClicked(!isClicked);
-    const payload = { name, unit, size, price };
+    const payload = { name, code, unit, size, price };
     setProduct(payload);
   }
 
   return (
     <>
       <Header />
-      <Section
-        hero="hero is-warning is-bold"
-        page="Estoque"
-        description="Consulte, registre e pequise aqui"
-      />
+      <Section page="Estoque" description="Consulte, registre e pequise aqui" />
 
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10-mobile is-offset-1-mobile">
-            <label className="checkbox">
+      <div className="container mx-auto">
+        <div className="flex flex-col justify-center items-center">
+          <div className="px-3 py-4 max-w-4xl w-full space-y-8">
+            <label className="">
               <input
                 type="checkbox"
                 name="new-prod"
@@ -54,139 +49,126 @@ const Stock = () => {
               <span className="mx-1">Novo produto? Clique aqui.</span>
             </label>
             {!isNewProduct && (
-              <section>
-                <div className="container my-5">
-                  <table className="table">
-                    <thead>
-                      {/* Head */}
-                      <tr>
-                        <th>
-                          <abbr title="Código">Cód</abbr>
-                        </th>
-                        <th>Nome</th>
-                        <th>
-                          <abbr title="Unidade">Un</abbr>
-                        </th>
-                        <th>
-                          <abbr title="Tamanho">Tam</abbr>
-                        </th>
-                        <th>Preço</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {/* Body */}
-                      {productList.map((product, key) => (
-                        <tr key={key}>
-                          <td>{product.id}</td>
-                          <td>{product.name}</td>
-                          <td>{product.unit}</td>
-                          <td>{product.size}</td>
-                          <td>{currencyFormat(product.price)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
+              <table className="w-full text-lg bg-gray-100 shadow-md rounded mb-4">
+                <thead>
+                  {/* Head */}
+                  <tr className="border-b-4 border-indigo-400">
+                    <th>
+                      <abbr title="Código">Cód</abbr>
+                    </th>
+                    <th>Nome</th>
+                    <th>
+                      <abbr title="Unidade">Un</abbr>
+                    </th>
+                    <th>
+                      <abbr title="Tamanho">Tam</abbr>
+                    </th>
+                    <th>Preço</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Body */}
+                  {productList.map((product, key) => (
+                    <tr
+                      key={key}
+                      className="border-b border-indigo-400 text-center"
+                    >
+                      <td>{product.id}</td>
+                      <td>{product.name}</td>
+                      <td>{product.unit}</td>
+                      <td>{product.size}</td>
+                      <td>{currencyFormat(product.price)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             )}
 
             {isNewProduct && (
-              <section>
-                <div className="container my-5">
-                  <div className="columns">
-                    <div className="column">
-                      <div className="field is-horizontal">
-                        <div className="field-label">
-                          <label className="label">Nome</label>
-                        </div>
-                        <div className="field-body">
-                          <div className="field">
-                            <p className="control">
-                              <input
-                                className="input is-primary"
-                                type="text"
-                                onChange={(e) => setName(e.target.value)}
-                              />
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="field is-horizontal">
-                        <div className="field-label">
-                          <label className="label">Unid.</label>
-                        </div>
-                        <div className="field-body">
-                          <div className="field">
-                            <p className="control">
-                              <input
-                                className="input is-primary"
-                                type="text"
-                                onChange={(e) => setUnit(e.target.value)}
-                              />
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="field is-horizontal">
-                        <div className="field-label">
-                          <label className="label">Tam.</label>
-                        </div>
-                        <div className="field-body">
-                          <div className="field">
-                            <div className="control">
-                              <div className="select is-primary">
-                                <select
-                                  name="size"
-                                  id="size"
-                                  onChange={(e) => setSize(e.target.value)}
-                                >
-                                  <option value="U">U</option>
-                                  <option value="P">P</option>
-                                  <option value="M">M</option>
-                                  <option value="G">G</option>
-                                  <option value="GG">GG</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="field is-horizontal">
-                        <div className="field-label">
-                          <label className="label">Preço</label>
-                        </div>
-                        <div className="field-body">
-                          <div className="field">
-                            <p className="control">
-                              <NumberFormat
-                                className="input is-primary"
-                                displayType={"input"}
-                                thousandSeparator={"."}
-                                decimalSeparator={","}
-                                decimalScale={2}
-                                onChange={(e) =>
-                                  setPrice(commaToDot(e.target.value))
-                                }
-                              />
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="field is-grouped is-grouped-right">
-                        <button
-                          className={`button is-dark ${
-                            isClicked ? "is-loading" : ""
-                          }`}
-                          onClick={() => handleDataset()}
-                        >
-                          Enviar
-                        </button>
-                      </div>
+              <form className="mt-8 space-y-1" onSubmit={handleDataset}>
+                <div className="flex flex-col items-center md:items-stretch">
+                  <div>
+                    <label htmlFor="name" className="">
+                      Nome do produto
+                    </label>
+                    <input
+                      id="name"
+                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                  <div className="md:flex md:justify-between py-4">
+                    <div className="">
+                      <label htmlFor="code" className="block md:inline">
+                        Cód.
+                      </label>
+                      <input
+                        id="code"
+                        type="text"
+                        value={code}
+                        className="appearance-none rounded-none relative border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        onChange={(e) => setCode(e.target.value)}
+                      />
                     </div>
-                    <div className="column"></div>
+                    <div className="">
+                      <label htmlFor="unit" className="block md:inline">
+                        Unid.
+                      </label>
+                      <input
+                        id="unit"
+                        className="appearance-none rounded-none relative border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        type="text"
+                        value={unit}
+                        onChange={(e) => setUnit(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="size" className="block md:inline">
+                        Tam.
+                      </label>
+
+                      <select
+                        name="size"
+                        id="size"
+                        className="appearance-none rounded-none relative border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        value={size}
+                        onChange={(e) => setSize(e.target.value)}
+                      >
+                        <option value="U">U</option>
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="GG">GG</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="price" className="block md:inline">
+                        Preço
+                      </label>
+                      <NumberFormat
+                        id="price"
+                        className="appearance-none rounded-none relative border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        displayType={"input"}
+                        thousandSeparator={"."}
+                        decimalSeparator={","}
+                        decimalScale={2}
+                        onChange={(e) => setPrice(commaToDot(e.target.value))}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center">
+                    <button
+                      type="submit"
+                      className="rounded-lg shadow-lg bg-indigo-600 w-60 py-2 font-medium text-lg text-white transition duration-300 ease-in-out hover:bg-indigo-400 hover:shadow-none"
+                    >
+                      Enviar
+                    </button>
                   </div>
                 </div>
-              </section>
+              </form>
             )}
           </div>
         </div>
