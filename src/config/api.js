@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getToken } from "../helpers/auth";
 
-// const URL = "https://vendinhas.herokuapp.com/";
-const URL = "http://localhost:3001";
+const URL = "https://vendinhas.herokuapp.com/";
+// const URL = "http://localhost:3001";
 
 const api = axios.create({
   baseURL: URL,
