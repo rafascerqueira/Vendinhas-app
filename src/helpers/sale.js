@@ -14,6 +14,14 @@ const getOrderId = async (customerId) => {
  */
 export const setPurchaseOrder = async (customerId, order) => {
   const orderId = await getOrderId(customerId);
+
+  const total_amount = order
+    .map((product) => product.price * product.qty)
+    .reduce((total, price) => {
+      let result = parseFloat(total) + parseFloat(price);
+      return result.toFixed(2);
+    });
+
   order.map(async (product) => {
     let { id, qty } = product;
 
@@ -21,15 +29,15 @@ export const setPurchaseOrder = async (customerId, order) => {
       orderId: parseInt(orderId),
       productId: parseInt(id),
       quantity: parseInt(qty),
+      total_amount,
     };
 
     await api
       .post("/sale", payload)
       .then((sale) => sale.data)
       .catch((err) => console.log(err));
-
-    return window.location.reload();
   });
+  return window.location.reload();
 };
 
 /**

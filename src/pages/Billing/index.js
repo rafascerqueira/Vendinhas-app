@@ -110,7 +110,7 @@ const Billing = () => {
                           onClick={() => setNewBill(order.id)}
                         >
                           <span>
-                            <PlusIcon className="inline h-5 w-5 mx-1 text-blue-800 bg-white rounded-full shadow-md" />
+                            <PlusIcon className="inline h-8 w-8 mx-1 text-blue-800 bg-white rounded-full shadow-md" />
                           </span>
                         </Link>
                         <Link
@@ -119,7 +119,7 @@ const Billing = () => {
                           onClick={() => deleteOrder(order.id)}
                         >
                           <span>
-                            <XIcon className="inline h-5 w-5 mx-1 text-red-600 bg-white rounded-full shadow-md" />
+                            <XIcon className="inline h-8 w-8 mx-1 text-red-600 bg-white rounded-full shadow-md" />
                           </span>
                         </Link>
                       </td>
@@ -142,7 +142,7 @@ const Billing = () => {
                           onDoubleClick={() => payingBill(invoice.id)}
                         >
                           <span>
-                            <CheckIcon className="inline h-5 w-5 mx-1 text-green-600 bg-white rounded-full shadow-md" />
+                            <CheckIcon className="inline h-8 w-8 mx-1 text-green-600 bg-white rounded-full shadow-md" />
                           </span>
                         </Link>
                         <Link
@@ -154,7 +154,7 @@ const Billing = () => {
                           }}
                         >
                           <span>
-                            <ExclamationIcon className="inline h-5 w-5 mx-1 text-yellow-500 bg-white rounded-full shadow-md" />
+                            <ExclamationIcon className="inline h-8 w-8 mx-1 text-yellow-500 bg-white rounded-full shadow-md" />
                           </span>
                         </Link>
                       </td>
