@@ -1,7 +1,15 @@
+<img  src="https://lh3.googleusercontent.com/pw/AL9nZEW80Zp72Aq32vwUI35rPSfER5ALLXoYUStOuI1esrGXyi2DpNrKPqdbOUR1ZBKOvhOgbeaT9Uslu-Jx8ww0DqRsiavK3F4Z-na_TDIbp6uI0-AhQu4nNB78LI0_7IZxj5uWECcxQ00hnIoFcFvKV172=w1351-h328-no?authuser=0">
+
 # App Vendinhas
 
 Repositório frontend do projeto de gerenciamento de vendas pensado para vendedores autônomos e revendedores de produtos.
 
-> OBS.: essa aplicação está em fase de testes e seu desenvolvimento ainda não foi concluído.
+### Como funciona?
 
-![Vendinhas App](https://lh3.googleusercontent.com/SeEW5jNqkR_JbwCxHkkWvqH-HhChP_QlX0EQZy_Oph0aKm5n0UPq99YzxsiXRl8e0Z59_MbpO2U1twn0ltpV9_q8kZXNPn1uDugbULTC3oR7hfp7tkYJkHYIZMFyPMVDrVX-k0RumKqbnBZaN_Ha-GPVX83yp38gREkaYviL1PtesQmBRsvi25ouDSfdsBBj5QIvST80KYObeXHr5fhHoNQCxtJEhzHfzkCTaGJ5Vrv8kH5DIe6usf5LJCehdEvioY4yMJ9iKplKc2csAZXH4bAMlW_SttZtGsDGzX7ZgxB6vD8meA0EAGYqIMv1527QkLLPmDyfIT5nE6hzuMzFV3oB-hsDYzi2wmi8VES-CQLEMVLIVy79UchZqmnyYtWq96Kn8GATLm2YYuKJQ1iyiCysObD8ALv2a58vc9x7GhZP7OeIwsxCdQNM37jWNGZm0XemRrNI47xxjx-509fYMSTE51ZU83Nn7VRXphDU9kDZgWORdxBudWT-tsZ5CE_AslaTo_m6ihKVHbHc_26wFZIgxU7ptTHoy0yxaFALT9xxpk2cUtGhk7rnh32FLAFdjdr8Aq-P3lU1NT1OPbsM-YcSyS0sWI043Asf4l_Tt_W1DVUoDwGdJFfTTpzos9lZ3HE8gH1xMVFT3aAOk4tFNWiuFNQCPGR6r8AVkrik7CJDJnRuaOhNIQjUxw8tkBGAS8fmJ8kuqvVsGrUYerFcxdx360_OuKz4kckyYbbvuNxCThQFcQ_5ig=w800-h200-no)
+Cadastre seus clientes, seus produtos, e realize suas vendas. Cada pedido é uma operação de venda onde é possível ajustar se todos os produtos solicitados no pedido estão disponíveis para a entrega, e assim emitir a cobrança.
+
+Controle e gerencie suas cobranças, acompanhando em relatórios exportáveis, dashboard, e etc.
+
+> OBS.: Aplicação em fase de testes e homologação
+
+_"Tudo o que aprendi de bom veio daqui e eu :heart:"_

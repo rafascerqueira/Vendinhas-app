@@ -4,12 +4,12 @@ import Logo from './assets/vendinhas.svg';
 export default function () {
   return (
     <div className="flex flex-col md:flex-row justify-center min-h-full p-6">
-      <div className="mx-auto py-12 px-6 text-7xl md:rounded-tl-md md:rounded-bl-md bg-gray-200 shadow-md">
-        <img className="mx-auto h-12 w-auto" src={Logo} alt="Vendinhas App" />
+      <div className="mx-auto py-12 px-6 text-7xl md:rounded-tl-md md:rounded-bl-md bg-gray-200 dark:bg-slate-900 dark:text-gray-100 shadow-md">
+        <img className="mx-auto h-16 w-auto" src={Logo} alt="Vendinhas App" />
         <h2 className="mt-6 text-center text-3xl font-bold">
           Entre com a sua conta
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           Ou{' '}
           <a
             href="#"
@@ -32,7 +32,7 @@ export default function () {
                 type="email"
                 autoComplete="email"
                 required
-                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 dark:border-gray-700 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm dark:bg-stone-300"
                 placeholder="Email de usuário"
               />
             </div>
@@ -46,7 +46,7 @@ export default function () {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 dark:border-gray-700 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm dark:bg-stone-300"
                 placeholder="Senha"
               />
             </div>
@@ -62,7 +62,7 @@ export default function () {
               />
               <label
                 htmlFor="remember-me"
-                className="ml-2 block text-sm text-gray-900"
+                className="ml-2 block text-sm text-gray-900 dark:text-gray-400"
               >
                 Lembre-se de mim
               </label>
@@ -95,7 +95,7 @@ export default function () {
         </form>
         {/* End Form */}
       </div>
-      <div className="overflow-hidden md:flex-auto rounded-tr-md rounded-br-md shadow-md bg-cover bg-center bg-no-repeat bg-[url('../public/side-login.jpg')]"></div>
+      <div className="overflow-hidden md:flex-auto rounded-tr-md rounded-br-md shadow-md bg-cover bg-center bg-no-repeat bg-[url('/side-login.jpg')]"></div>
     </div>
   );
 }

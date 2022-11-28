@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Mulish"', 'sans-serif'],
+        mulish: ['"Mulish"', 'sans-serif'],
+        oswald: ['"Oswald"', 'sans-serif'],
       },
     },
   },
