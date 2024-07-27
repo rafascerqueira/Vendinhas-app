@@ -6,7 +6,7 @@ export function Headerbar() {
   return (
     <ThemeContext.Consumer>
       {({ enabled, toggleTheme }) => (
-        <div className="hidden md:flex justify-between pt-1 h-12 bg-gray-100 dark:bg-gray-900 text-indigo-700 dark:text-slate-200 font-bold text-xl px-12 shadow-md box-border">
+        <div className="flex justify-between pt-1 h-12 bg-gray-100 dark:bg-gray-900 text-indigo-700 dark:text-slate-200 font-bold text-xl px-12 shadow-md">
           <div className="inline-flex items-center">
             <img
               src="https://github.com/rafascerqueira.png"

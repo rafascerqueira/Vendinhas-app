@@ -19,7 +19,7 @@ export default function App() {
   return (
     <ThemeContext.Provider value={{ enabled, toggleTheme }}>
       <div className={theme === themes.DARK ? themes.DARK : themes.LIGHT}>
-        <div className="bg-gray-300 dark:bg-slate-800 font-mulish">
+        <div className="bg-gray-300 dark:bg-slate-800 font-mulish h-full min-h-screen">
           <AppRoutes />
         </div>
       </div>

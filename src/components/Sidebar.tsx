@@ -13,7 +13,7 @@ export function Sidebar() {
   };
 
   return (
-    <div className="absolute xl:w-64 bg-slate-400 dark:bg-slate-900 dark:text-gray-100 h-screen px-8 py-4">
+    <div className="bg-slate-400 dark:bg-slate-900 dark:text-gray-100 h-screen px-12 py-4 box-border">
       <div className="flex justify-center">
         <img src={ShortcutLogo} alt="Logo" className="h-16" />
       </div>

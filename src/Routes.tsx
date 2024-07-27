@@ -12,20 +12,23 @@ import Signin from './Signin';
 export function AppRoutes() {
   return (
     <Router>
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row box-border">
         <div className="sm:fixed">
           <Sidebar />
         </div>
-        <div className="flex-auto md:ml-44 lg:ml-64 dark:text-gray-200 h-full min-h-screen">
+        <div className="hidden sm:flex px-24 mx-3 h-screen"></div>
+        <div className="flex-auto">
           <Headerbar />
-          <Routes>
-            <Route path="/" element={<Signin />} />
-            <Route path="home" element={<Dashboard />} />
-            <Route path="billing" element={<Billing />} />
-            <Route path="order" element={<Order />} />
-            <Route path="sale" element={<Sale />} />
-            <Route path="product" element={<Product />} />
-          </Routes>
+          <div className="dark:text-gray-200">
+            <Routes>
+              <Route path="/" element={<Signin />} />
+              <Route path="home" element={<Dashboard />} />
+              <Route path="billing" element={<Billing />} />
+              <Route path="order" element={<Order />} />
+              <Route path="sale" element={<Sale />} />
+              <Route path="product" element={<Product />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </Router>
