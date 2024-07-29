@@ -13,6 +13,7 @@ dist-ssr
 *.local
 
 package-*.json
+yarn.*
 
 # Editor directories and files
 .vscode/*

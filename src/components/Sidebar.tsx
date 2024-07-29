@@ -23,8 +23,9 @@ export function Sidebar() {
           <ul className="relative">
             <li className="relative">
               <NavLink
-                to="home"
-                style={({ isActive }) => (isActive ? activeNavlink : undefined)}
+                to="/home"
+                style={({ isActive }) => (isActive ? activeNavlink : {})}
+                end
               >
                 <PresentationChartBarIcon className="inline h-6 w-6" />{' '}
                 Dashboard
@@ -34,8 +35,9 @@ export function Sidebar() {
           <ul>
             <li>
               <NavLink
-                to="sale"
-                style={({ isActive }) => (isActive ? activeNavlink : undefined)}
+                to="/sale"
+                style={({ isActive }) => (isActive ? activeNavlink : {})}
+                end
               >
                 <BuildingStorefrontIcon className="inline h-6 w-6" /> Vendas
               </NavLink>
@@ -44,8 +46,9 @@ export function Sidebar() {
           <ul>
             <li>
               <NavLink
-                to="order"
-                style={({ isActive }) => (isActive ? activeNavlink : undefined)}
+                to="/order"
+                style={({ isActive }) => (isActive ? activeNavlink : {})}
+                end
               >
                 <PencilSquareIcon className="inline h-6 w-6" /> Pedidos
               </NavLink>
@@ -54,8 +57,9 @@ export function Sidebar() {
           <ul>
             <li>
               <NavLink
-                to="product"
-                style={({ isActive }) => (isActive ? activeNavlink : undefined)}
+                to="/product"
+                style={({ isActive }) => (isActive ? activeNavlink : {})}
+                end
               >
                 <TableCellsIcon className="inline h-6 w-6" /> Produtos
               </NavLink>
@@ -64,8 +68,9 @@ export function Sidebar() {
           <ul>
             <li>
               <NavLink
-                to="billing"
-                style={({ isActive }) => (isActive ? activeNavlink : undefined)}
+                to="/billing"
+                style={({ isActive }) => (isActive ? activeNavlink : {})}
+                end
               >
                 <BanknotesIcon className="inline h-6 w-6" /> Faturamento
               </NavLink>

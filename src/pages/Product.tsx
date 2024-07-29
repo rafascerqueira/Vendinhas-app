@@ -1,3 +1,9 @@
+import { TemplateApp } from "../components/TemplateApp";
+
 export function Product() {
-  return <h1>Product</h1>;
+  return (
+    <TemplateApp>
+      <h1>Product</h1>
+    </TemplateApp>
+  );
 }

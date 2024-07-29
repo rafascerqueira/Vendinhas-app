@@ -1,3 +1,9 @@
+import { TemplateApp } from "../components/TemplateApp";
+
 export function Order() {
-  return <h1>Order</h1>;
+  return (
+    <TemplateApp>
+      <h1>Order</h1>
+    </TemplateApp>
+  );
 }

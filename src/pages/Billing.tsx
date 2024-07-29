@@ -1,3 +1,9 @@
+import { TemplateApp } from "../components/TemplateApp";
+
 export function Billing() {
-  return <h1>Billing</h1>;
+  return (
+    <TemplateApp>
+      <h1>Billing</h1>
+    </TemplateApp>
+  );
 }

@@ -1,7 +1,10 @@
-import { LockClosedIcon } from '@heroicons/react/20/solid';
-import Logo from './assets/vendinhas.svg';
+import { LockClosedIcon } from "@heroicons/react/20/solid";
+import Logo from "./assets/vendinhas.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function () {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col md:flex-row justify-center min-h-full p-6">
       <div className="mx-auto py-12 px-6 text-7xl md:rounded-tl-md md:rounded-bl-md bg-gray-200 dark:bg-slate-900 dark:text-gray-100 shadow-md">
@@ -10,7 +13,7 @@ export default function () {
           Entre com a sua conta
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Ou{' '}
+          Ou{" "}
           <a
             href="#"
             className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -19,7 +22,14 @@ export default function () {
           </a>
         </p>
         {/* Form */}
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form
+          className="mt-8 space-y-6"
+          onSubmit={(e) => {
+            e.preventDefault();
+            navigate("/home");
+          }}
+          method="POST"
+        >
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="-space-y-px rounded-md shadow-sm">
             <div>
